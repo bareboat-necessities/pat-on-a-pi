@@ -7,13 +7,12 @@
 # Backups are always a great idea. Hopefully, if you use your radio Pi portable, you've backed up its SD card (maybe one to take with you as spare, and one to leave at home for recovery).
 # Alrigh, alright, here we go...
 
-echo 'Updating package repository...'
-sudo apt update
+#echo 'Updating package repository...'
+#sudo apt update
 #echo 'Upgrading packages. You may skip this by selecting N.'
 #sudo apt upgrade # You can select No here, if you're worried that upgrades might break something, or you don't think you have time.
 #Really, I think any packages that need to get upgraded for this will get upgraded as we install it.
 
-echo
 echo 'Downloading run helper scripts...'
 mkdir -p ${HOME}/bin
 wget -O ${HOME}/bin/run_pat.sh https://raw.githubusercontent.com/bareboat-necessities/pat-on-a-pi/main/run_pat.sh
@@ -36,7 +35,7 @@ wget -O ${HOME}/Desktop/runpat.desktop https://raw.githubusercontent.com/bareboa
 #wget -O /tmp/pat_0.10.0_linux_armhf.deb https://github.com/la5nta/pat/releases/download/v0.10.0/pat_0.10.0_linux_armhf.deb
 #sudo dpkg -i /tmp/pat_0.10.0_linux_armhf.deb
 
-echo 'Configuring Pat...'
+#echo 'Configuring Pat...'
 mkdir -p ${HOME}/.wl2k
 if [ -e "${HOME}/.wl2k/config.json" ]; then
   echo 'Detected existing Pat configuration. Hit Enter to overwrite, or Ctrl+C to finish setup with existing config.'
@@ -56,12 +55,11 @@ echo
 read -p 'Enter your Grid Square: ' gridsquare
 sed -i "s/YourGridSquareHere/${gridsquare}/" ${HOME}/.wl2k/config.json
 
-read -p 'Would you like to set up GPS as a time source (optional, beta)? [y/N]: ' setup_gps_time
-if [ "$setup_gps_time" == "y" ] || [ "$setup_gps_time" == "Y" ]; then
-  /tmp/gps_time_setup.sh
-fi
+#read -p 'Would you like to set up GPS as a time source (optional, beta)? [y/N]: ' setup_gps_time
+#if [ "$setup_gps_time" == "y" ] || [ "$setup_gps_time" == "Y" ]; then
+#  /tmp/gps_time_setup.sh
+#fi
 
 echo 'Congratulations, Pat has been installed and configured!'
 echo "You can run it with the helper script: ${HOME}/bin/run_pat.sh"
-echo "or the Run Pat icon on your desktop."
-
+echo "or the Run Pat icon from the Start Menu."
