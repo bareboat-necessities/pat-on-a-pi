@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Starts up rigctld, then Ardopc, then Pat.
-# Make sure before running that you don't have anything else running (e.g. js8call) that is using your tranceiver.
+# Make sure before running it you don't have anything else running (e.g. js8call) that is using your tranceiver.
 
 # Drive level into rig. Adjust if neccessary to get the ALC meter on your rig at around 30%.
 OUTPUT_VOL='59%'
@@ -9,7 +9,7 @@ OUTPUT_VOL='59%'
 RIG='373' # IC-7300 (& IC-705, but change the CI-V address in your 705 to 94.
 # run `rigctl -l` to find a list of other radio models and swap the 373 here with that number.
 # Note that this script was writtin for and currently only supports the IC-705.
-# You'll need to additionally update your Ardop config and also your ~/.wl2k/config.json file to use a different rig.
+# You'll need to additionally update your Ardop config, and your ~/.wl2k/config.json file to use a different rig.
 
 BAUD=9600
 
