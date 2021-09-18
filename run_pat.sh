@@ -71,7 +71,7 @@ elif [ "${uimode}" -eq "3" ]; then
 else
   pat http > /tmp/pat.log &
   #pat http -a 0.0.0.0:8070 & #comment out the above line and uncomment this if you want to expose pat to the rest of the network. INSECURE!
-  #sensible-browser --user-data-dir='/tmp/pat-web-browser' --app='http://127.0.0.1:8070'; #really, the --user-data-dir is a chromium-browser flag...
+  #sensible-browser --user-data-dir='/tmp/pat-web-browser' --app='http://127.0.0.1:8070' #really, the --user-data-dir is a chromium-browser flag...
   sensible-browser --app='http://localhost:8070' > /dev/null 2>&1 &
   echo
   echo "Pat web GUI has launched. If you don't see it, it may have opened in an existing browser window."
