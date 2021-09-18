@@ -11,7 +11,7 @@ echo 'Downloading run helper scripts...'
 mkdir -p ${HOME}/bin
 wget -O ${HOME}/bin/run_pat.sh https://raw.githubusercontent.com/bareboat-necessities/pat-on-a-pi/main/run_pat.sh
 chmod u+x ${HOME}/bin/run_pat.sh
-wget -O ${HOME}/Desktop/runpat.desktop https://raw.githubusercontent.com/bareboat-necessities/pat-on-a-pi/main/runpat.desktop
+wget -O ${HOME}/.local/share/applications/runpat.desktop https://raw.githubusercontent.com/bareboat-necessities/pat-on-a-pi/main/runpat.desktop
 
 mkdir -p ${HOME}/.wl2k
 if [ -e "${HOME}/.wl2k/config.json" ]; then
