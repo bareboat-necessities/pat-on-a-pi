@@ -19,7 +19,7 @@ if [ "$?" -ne "0" ]; then
   echo 'Could not initiate connection with rig on /dev/ttyACM0. Is it plugged in, with the correct CI-V address set?'
   read -p 'Hit Enter or close this terminal window.' k #TODO: Only show these prompts when launched from desktop
   echo 'Exiting.'
-  exit
+  exit 0
 fi
 rigctld -m ${RIG} -r /dev/ttyACM0 -s ${BAUD} > /tmp/rigctl.log &
 sleep 1
@@ -30,7 +30,7 @@ if [ "$(echo ${AUDIOCARD} |wc -l)" -lt "1" ]; then
   echo 'Problem detecting USB audio card. Is the device plugged in?'
   read -p 'Hit Enter or close this terminal window.' k #TODO: Only show these prompts when launched from desktop
   echo 'Exiting.'
-  exit
+  exit 0
 fi
 CARDNUM=$(echo ${AUDIOCARD} |cut -d' ' -f2)
 echo 'Setting appropriate output volume level. If you find this is not driving your rig at the'
@@ -73,14 +73,12 @@ else
   #pat http -a 0.0.0.0:8070 & #comment out the above line and uncomment this if you want to expose pat to the rest of the network. INSECURE!
   #sensible-browser --user-data-dir='/tmp/pat-web-browser' --app='http://127.0.0.1:8070' #really, the --user-data-dir is a chromium-browser flag...
   sensible-browser --app='http://localhost:8070' > /dev/null 2>&1 &
-  echo
   echo "Pat web GUI has launched. If you don't see it, it may have opened in an existing browser window."
   echo 'When finished, hit Enter or close this terminal window.'
   read k
 fi
 
 echo 'Cleaning up...'
-#rm -rf /tmp/pat-web-browser
 killall pat
 killall ardopc
 killall rigctld
