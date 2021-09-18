@@ -1,3 +1,5 @@
+Fork of https://github.com/CarpeNoctem/pat-on-a-pi
+
 # pat-on-a-pi
 ## Easy-mode setup of Pat Winlink client on a Raspberry Pi
 
@@ -10,7 +12,7 @@ I'll try to add support for other radio models/sound cards soon.
 ### How to install:
 Run the following in a terminal window on the Pi:
 
-`curl https://raw.githubusercontent.com/CarpeNoctem/pat-on-a-pi/main/setup_pat.sh > /tmp/setup_pat.sh; bash /tmp/setup_pat.sh`
+`curl https://raw.githubusercontent.com/bareboat-necessities/pat-on-a-pi/main/setup_pat.sh > /tmp/setup_pat.sh; bash /tmp/setup_pat.sh`
 
 This will install Pat and its prerequisites, a desktop icon, and a helper script for launching rig control and an ARDOP TNC when running Pat. It will also prompt you for your grid square and Winlink credentials to put into the Pat configuration. (In the future, it may ask you to select a rig and detect USB audio interface.)
 
@@ -18,9 +20,8 @@ This will install Pat and its prerequisites, a desktop icon, and a helper script
 This will change in the future as hamlib and other software formal support the IC-705.
 
 ### Future changes (in chronological order)
-1. ~~Add the option during setup to configure GPS as a time source (with [this script I've already written](https://raw.githubusercontent.com/CarpeNoctem/ham-utils/main/gps_time_setup.sh)).~~
-2. Add support for setting this up with rigs besides the IC-705.
-3. Add support for setting up and switching between multiple rigs.
-4. Add support for packet gateways.
+1. Add support for setting this up with rigs besides the IC-705.
+2. Add support for setting up and switching between multiple rigs.
+3. Add support for packet gateways.
 
-These and more may be tracked via this project's [issues tracker](https://github.com/CarpeNoctem/pat-on-a-pi/issues).
+These and more may be tracked via this project's [issues tracker](https://github.com/bareboat-necessities/pat-on-a-pi/issues).

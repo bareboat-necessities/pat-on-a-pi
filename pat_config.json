@@ -6,7 +6,7 @@
   "service_codes": [
     "PUBLIC"
   ],
-  "http_addr": "localhost:8080",
+  "http_addr": "localhost:8070",
   "motd": [
     "Open source Winlink client - getpat.io"
   ],
