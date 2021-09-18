@@ -13,76 +13,76 @@ RIG='373' # IC-7300 (& IC-705, but change the CI-V address in your 705 to 94.
 
 BAUD=9600
 
-echo 'Initiating connection with rig...';
+echo 'Initiating connection with rig...'
 rigctl -m ${RIG} -r /dev/ttyACM0 -s ${BAUD} f >/dev/null 2>&1
 if [ "$?" -ne "0" ]; then
-  echo 'Could not initiate connection with rig on /dev/ttyACM0. Is it plugged in, with the correct CI-V address set?';
-  read -p 'Hit Enter or close this terminal window.' k; #TODO: Only show these prompts when launched from desktop
-  echo 'Exiting.';
-  exit;
+  echo 'Could not initiate connection with rig on /dev/ttyACM0. Is it plugged in, with the correct CI-V address set?'
+  read -p 'Hit Enter or close this terminal window.' k #TODO: Only show these prompts when launched from desktop
+  echo 'Exiting.'
+  exit
 fi
 rigctld -m ${RIG} -r /dev/ttyACM0 -s ${BAUD} > /tmp/rigctl.log &
-sleep 1;
+sleep 1
 
-echo 'Initiating Ardop TNC...';
+echo 'Initiating Ardop TNC...'
 AUDIOCARD=$(aplay -l |grep 'USB Audio CODEC' |grep -o 'card [0-9]*')
 if [ "$(echo ${AUDIOCARD} |wc -l)" -lt "1" ]; then
-  echo 'Problem detecting USB audio card. Is the device plugged in?';
-  read -p 'Hit Enter or close this terminal window.' k; #TODO: Only show these prompts when launched from desktop
-  echo 'Exiting.';
+  echo 'Problem detecting USB audio card. Is the device plugged in?'
+  read -p 'Hit Enter or close this terminal window.' k #TODO: Only show these prompts when launched from desktop
+  echo 'Exiting.'
   exit
 fi
 CARDNUM=$(echo ${AUDIOCARD} |cut -d' ' -f2)
-echo 'Setting appropriate output volume level. If you find this is not driving your rig at the';
-echo 'right level (should be about 30% on your rigs ALC meter) use alsamixer to adjust accordingly.';
-echo 'You can also edit the OUTPUT_VOL variable at the top of this script for future runs.';
+echo 'Setting appropriate output volume level. If you find this is not driving your rig at the'
+echo 'right level (should be about 30% on your rigs ALC meter) use alsamixer to adjust accordingly.'
+echo 'You can also edit the OUTPUT_VOL variable at the top of this script for future runs.'
 amixer -c ${CARDNUM} set PCM ${OUTPUT_VOL} > /dev/null
 ardopc > /tmp/ardopc.log &
-sleep 1;
+sleep 1
 
 # IC-705 provides GPS on ttyACM1. TODO: This will need to be made dynamic later for other devices.
-echo 'Starting gpsd...';
-sudo service gpsd stop;
-sudo killall gpsd;
-gpsd /dev/ttyACM1;
+echo 'Starting gpsd...'
+sudo service gpsd stop
+sudo killall gpsd
+gpsd /dev/ttyACM1
 
-echo;
+echo
 uimode=1
 if [ "$#" -lt "1" ]; then
-  echo 'Start Pat with web GUI or interactive text mode?';
-  echo '1) Web GUI (port 8070) [default]';
-  echo '2) Command line interface';
-  echo '3) Quit and clean up';
-  read -p '#? ' uimode;
+  echo 'Start Pat with web GUI or interactive text mode?'
+  echo '1) Web GUI (port 8070) [default]'
+  echo '2) Command line interface'
+  echo '3) Quit and clean up'
+  read -p '#? ' uimode
 else
   if [ "$1" == "cli" ]; then
-    echo 'Launching Pat in CLI mode.';
+    echo 'Launching Pat in CLI mode.'
     uimode=2
   else
-    echo 'Launching Pat web GUI...';
+    echo 'Launching Pat web GUI...'
   fi
 fi
 
 if [ "${uimode}" -eq "2" ]; then
-  pat interactive;
-  read -p 'Hit Enter or close this terminal window.' k; #TODO: Only show these prompts when launched from desktop
+  pat interactive
+  read -p 'Hit Enter or close this terminal window.' k #TODO: Only show these prompts when launched from desktop
 elif [ "${uimode}" -eq "3" ]; then
-  echo -n 'Okay. ';
+  echo -n 'Okay. '
 else
   pat http > /tmp/pat.log &
   #pat http -a 0.0.0.0:8070 & #comment out the above line and uncomment this if you want to expose pat to the rest of the network. INSECURE!
   #sensible-browser --user-data-dir='/tmp/pat-web-browser' --app='http://127.0.0.1:8070'; #really, the --user-data-dir is a chromium-browser flag...
   sensible-browser --app='http://localhost:8070' > /dev/null 2>&1 &
-  echo;
-  echo "Pat web GUI has launched. If you don't see it, it may have opened in an existing browser window.";
-  echo 'When finished, hit Enter or close this terminal window.';
-  read k;
+  echo
+  echo "Pat web GUI has launched. If you don't see it, it may have opened in an existing browser window."
+  echo 'When finished, hit Enter or close this terminal window.'
+  read k
 fi
 
-echo 'Cleaning up...';
-#rm -rf /tmp/pat-web-browser;
-killall pat;
-killall ardopc;
-killall rigctld;
+echo 'Cleaning up...'
+#rm -rf /tmp/pat-web-browser
+killall pat
+killall ardopc
+killall rigctld
 rigctl -m ${RIG} -r /dev/ttyACM0 -s ${BAUD} T 0 #ensure we stop TX if it got stuck
 
