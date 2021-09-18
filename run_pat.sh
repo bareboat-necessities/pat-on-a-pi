@@ -3,7 +3,7 @@
 # Starts up rigctld, then Ardopc, then Pat.
 # Make sure before running it you don't have anything else running (e.g. js8call) that is using your tranceiver.
 
-# Drive level into rig. Adjust if neccessary to get the ALC meter on your rig at around 30%.
+# Drive level into your rig. Adjust if neccessary to get the ALC meter on your rig at around 30%.
 OUTPUT_VOL='59%'
 
 RIG='373' # IC-7300 (& IC-705, but change the CI-V address in your 705 to 94.
