@@ -14,23 +14,23 @@ chmod u+x ${HOME}/bin/run_pat.sh
 wget -O ${HOME}/.local/share/applications/runpat.desktop https://raw.githubusercontent.com/bareboat-necessities/pat-on-a-pi/main/runpat.desktop
 
 mkdir -p ${HOME}/.wl2k
-if [ -e "${HOME}/.wl2k/config.json" ]; then
-  echo 'Detected existing Pat configuration. Hit Enter to overwrite, or Ctrl+C to finish setup with existing config.'
-  echo '(Note that run_pat.sh may not work as intended if you use an existing config.)'
-  read continue
-fi
+#if [ -e "${HOME}/.wl2k/config.json" ]; then
+#  echo 'Detected existing Pat configuration. Hit Enter to overwrite, or Ctrl+C to finish setup with existing config.'
+#  echo '(Note that run_pat.sh may not work as intended if you use an existing config.)'
+#  read continue
+#fi
 wget -O ${HOME}/.wl2k/config.json https://raw.githubusercontent.com/bareboat-necessities/pat-on-a-pi/main/pat_config.json
 
-read -p 'Enter your callsign: ' callsign
-sed -i "s/YourCallsignHere/${callsign}/" ${HOME}/.wl2k/config.json
-
-read -sp 'Enter your Winlink password (will not echo): ' wlpass
-sed -i "s/YourWinlinkPasswordHere/${wlpass}/" ${HOME}/.wl2k/config.json
-unset wlpass
-echo
-
-read -p 'Enter your Grid Square: ' gridsquare
-sed -i "s/YourGridSquareHere/${gridsquare}/" ${HOME}/.wl2k/config.json
+#read -p 'Enter your callsign: ' callsign
+#sed -i "s/YourCallsignHere/${callsign}/" ${HOME}/.wl2k/config.json
+#
+#read -sp 'Enter your Winlink password (will not echo): ' wlpass
+#sed -i "s/YourWinlinkPasswordHere/${wlpass}/" ${HOME}/.wl2k/config.json
+#unset wlpass
+#echo
+#
+#read -p 'Enter your Grid Square: ' gridsquare
+#sed -i "s/YourGridSquareHere/${gridsquare}/" ${HOME}/.wl2k/config.json
 
 echo 'Pat has been installed and configured!'
 echo "You can run it with the helper script: ${HOME}/bin/run_pat.sh"
