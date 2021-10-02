@@ -24,4 +24,4 @@ This will change in the future as hamlib and other software formal support the I
 2. Add support for setting up and switching between multiple rigs.
 3. Add support for packet gateways.
 
-These and more may be tracked via this project's [issues tracker](https://github.com/bareboat-necessities/pat-on-a-pi/issues).
+These and more may be tracked via this project's [issues tracker](https://github.com/CarpeNoctem/pat-on-a-pi/issues).
