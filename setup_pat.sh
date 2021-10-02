@@ -7,31 +7,33 @@
 # Backups are always a great idea. Hopefully, if you use your radio Pi portable, you've backed up its SD card (maybe one to take with you as spare, and one to leave at home for recovery).
 # Alrigh, alright, here we go...
 
-echo 'Downloading run helper scripts...'
-mkdir -p ${HOME}/bin
-wget -O ${HOME}/bin/run_pat.sh https://raw.githubusercontent.com/bareboat-necessities/pat-on-a-pi/main/run_pat.sh
-chmod u+x ${HOME}/bin/run_pat.sh
-wget -O ${HOME}/.local/share/applications/runpat.desktop https://raw.githubusercontent.com/bareboat-necessities/pat-on-a-pi/main/runpat.desktop
+PAT_HOME=/home/user
 
-mkdir -p ${HOME}/.wl2k
-#if [ -e "${HOME}/.wl2k/config.json" ]; then
+echo 'Downloading run helper scripts...'
+mkdir -p ${PAT_HOME}/bin
+wget -O ${PAT_HOME}/bin/run_pat.sh https://raw.githubusercontent.com/bareboat-necessities/pat-on-a-pi/main/run_pat.sh
+chmod u+x ${PAT_HOME}/bin/run_pat.sh
+wget -O ${PAT_HOME}/.local/share/applications/runpat.desktop https://raw.githubusercontent.com/bareboat-necessities/pat-on-a-pi/main/runpat.desktop
+
+mkdir -p ${PAT_HOME}/.wl2k
+#if [ -e "${PAT_HOME}/.wl2k/config.json" ]; then
 #  echo 'Detected existing Pat configuration. Hit Enter to overwrite, or Ctrl+C to finish setup with existing config.'
 #  echo '(Note that run_pat.sh may not work as intended if you use an existing config.)'
 #  read continue
 #fi
-wget -O ${HOME}/.wl2k/config.json https://raw.githubusercontent.com/bareboat-necessities/pat-on-a-pi/main/pat_config.json
+wget -O ${PAT_HOME}/.wl2k/config.json https://raw.githubusercontent.com/bareboat-necessities/pat-on-a-pi/main/pat_config.json
 
 #read -p 'Enter your callsign: ' callsign
-#sed -i "s/YourCallsignHere/${callsign}/" ${HOME}/.wl2k/config.json
+#sed -i "s/YourCallsignHere/${callsign}/" ${PAT_HOME}/.wl2k/config.json
 #
 #read -sp 'Enter your Winlink password (will not echo): ' wlpass
-#sed -i "s/YourWinlinkPasswordHere/${wlpass}/" ${HOME}/.wl2k/config.json
+#sed -i "s/YourWinlinkPasswordHere/${wlpass}/" ${PAT_HOME}/.wl2k/config.json
 #unset wlpass
 #echo
 #
 #read -p 'Enter your Grid Square: ' gridsquare
-#sed -i "s/YourGridSquareHere/${gridsquare}/" ${HOME}/.wl2k/config.json
+#sed -i "s/YourGridSquareHere/${gridsquare}/" ${PAT_HOME}/.wl2k/config.json
 
 echo 'Pat has been installed and configured!'
-echo "You can run it with the helper script: ${HOME}/bin/run_pat.sh"
+echo "You can run it with the helper script: ${PAT_HOME}/bin/run_pat.sh"
 echo "or the Run Pat icon from the Start Menu."
