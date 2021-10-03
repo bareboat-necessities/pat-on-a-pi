@@ -14,6 +14,7 @@ mkdir -p ${PAT_HOME}/bin
 wget -O ${PAT_HOME}/bin/run_pat.sh https://raw.githubusercontent.com/bareboat-necessities/pat-on-a-pi/main/run_pat.sh
 chmod u+x ${PAT_HOME}/bin/run_pat.sh
 wget -O ${PAT_HOME}/.local/share/applications/runpat.desktop https://raw.githubusercontent.com/bareboat-necessities/pat-on-a-pi/main/runpat.desktop
+chmod 755 ${PAT_HOME}/.local/share/applications/runpat.desktop
 
 mkdir -p ${PAT_HOME}/.wl2k
 #if [ -e "${PAT_HOME}/.wl2k/config.json" ]; then
